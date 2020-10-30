@@ -1,2 +1,4 @@
-# Sign-language-detection-using-open-cv
-This project is made in python language and I have used open-cv library, with the haar cascade classifier which is an object detection machine learning based algorithm also known as Viola Jones algorithm. This project is all about sign language detection using open-cv, in this project I have made a simple standalone application which used laptop web cam to detect the sign language and display the respective sign on the screen.
+Haar_Cascade_Classifiers
+========================
+
+A repository containing Haar Cascades that I have trained.

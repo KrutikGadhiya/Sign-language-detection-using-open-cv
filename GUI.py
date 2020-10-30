@@ -2,6 +2,7 @@ import cv2
 import tkinter as tk
 from PIL import Image, ImageTk
 
+
 hand_cascade = cv2.CascadeClassifier('harrcascade/palm.xml')
 fist_cascade = cv2.CascadeClassifier('harrcascade/fist.xml')
 C_cascade = cv2.CascadeClassifier('harrcascade/C4.xml')
@@ -13,6 +14,8 @@ H_cascade = cv2.CascadeClassifier('harrcascade/H.xml')
 I_cascade = cv2.CascadeClassifier('harrcascade/I.xml')
 K_cascade = cv2.CascadeClassifier('harrcascade/K4_24.xml')
 L_cascade = cv2.CascadeClassifier('harrcascade/L.xml')
+M_cascade = cv2.CascadeClassifier('harrcascade/Mkk.xml')
+N_cascade = cv2.CascadeClassifier('harrcascade/Nkk.xml')
 O_cascade = cv2.CascadeClassifier('harrcascade/O.xml')
 P_cascade = cv2.CascadeClassifier('harrcascade/P.xml')
 Q_cascade = cv2.CascadeClassifier('harrcascade/Q.xml')
@@ -29,20 +32,33 @@ window = tk.Tk()  # Makes main window
 window.wm_title("Practice Module")
 window.config(background="#FFFFFF")
 
+#w2 = tk.Tk()
+#w2.wm_title("text")
+#w2.config(background="#FFFFFF")
+
 # Graphics window
 imageFrame = tk.Frame(window, width=700, height=400)
 imageFrame.grid(row=0, column=0, padx=10, pady=2)
+
+#im = tk.Frame(w2, width=200, height=200)
+#im.grid(row=0, column=0, padx=0, pady=0)
+
+#T = tk.Text(w2, height=2, width=30)
+#T.grid()
+#T.insert(tk.END, "Just a text Widget\nin two lines\n")
 
 # Capture video frames
 lmain = tk.Label(imageFrame)
 lmain.grid(row=0, column=0)
 cap = cv2.VideoCapture(0)
 
+
 def show_frame():
     _, frame = cap.read()
     cv2.rectangle(frame, (100, 100), (350, 350), (0, 255, 0), 3)
     crop = frame[100:350, 100:350]
     crop_img = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
+    black = cv2.imread("images/black.jpg")
 
     A = fist_cascade.detectMultiScale(crop_img, 2, 5)
     B = hand_cascade.detectMultiScale(crop_img, 1.3, 5)
@@ -55,7 +71,8 @@ def show_frame():
     I = I_cascade.detectMultiScale(crop_img)
     K = K_cascade.detectMultiScale(crop_img, 3, 4)
     L = L_cascade.detectMultiScale(crop_img, 1.3, 4)
-
+    M = M_cascade.detectMultiScale(crop_img, 3, 5)
+    N = N_cascade.detectMultiScale(crop_img, 2.4, 5)
     O = O_cascade.detectMultiScale(crop_img, 1.2, 5)
     P = P_cascade.detectMultiScale(crop_img, 1.3, 5)
     Q = Q_cascade.detectMultiScale(crop_img)
@@ -71,48 +88,76 @@ def show_frame():
     bad = bad_cascade.detectMultiScale(crop_img, 1.3, 5)
 
     for (hx, hy, hw, hh) in A:
+        cv2.putText(black, 'A', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'A', (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in B:
+        cv2.putText(black, 'B', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'B', (40, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in C:
+        cv2.putText(black, 'C', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'C', (60, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in D:
+        cv2.putText(black, 'D', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'D', (80, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in E:
+        cv2.putText(black, 'E', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'E', (120, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in F:
+        cv2.putText(black, 'F', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'F', (120, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in G:
+        cv2.putText(black, 'G', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'G', (140, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in H:
+        cv2.putText(black, 'H', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'H', (160, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in I:
+        cv2.putText(black, 'I', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'I', (180, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in K:
+        cv2.putText(black, 'K', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'K', (200, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in L:
+        cv2.putText(black, 'L', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'L', (220, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
+    for (hx, hy, hw, hh) in M:
+        cv2.putText(black, 'M', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, 'M', (220, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
+    for (hx, hy, hw, hh) in N:
+        cv2.putText(black, 'N', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, 'N', (220, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in O:
+        cv2.putText(black, 'O', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'O', (260, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in P:
+        cv2.putText(black, 'P', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'P', (280, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in Q:
+        cv2.putText(black, 'Q', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'Q', (300, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in R:
+        cv2.putText(black, 'R', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'R', (320, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in W:
+        cv2.putText(black, 'W', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'W', (400, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in Y:
+        cv2.putText(black, 'Y', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'Y', (400, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in T:
+        cv2.putText(black, 'T', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'T', (400, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in U:
+        cv2.putText(black, 'U', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'U', (400, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in nice:
+        cv2.putText(black, 'Nice', (70, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'Nice', (100, 400), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in bad:
+        cv2.putText(black, 'Bad', (70, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'Bad', (100, 400), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
 
+    cv2.imshow("Output", black)
     cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
     img = Image.fromarray(cv2image)
     imgtk = ImageTk.PhotoImage(image=img)
@@ -122,8 +167,10 @@ def show_frame():
 
 
 # Slider window (slider controls stage position)
-sliderFrame = tk.Frame(window, width=600, height=100)
-sliderFrame.grid(row=600, column=0, padx=10, pady=2)
+#sliderFrame = tk.Frame(window, width=600, height=100)
+#sliderFrame.grid(row=600, column=0, padx=10, pady=2)
 
+cv2.destroyAllWindows()
 show_frame()  # Display 2
 window.mainloop()  # Starts GUI
+#w2.mainloop()
