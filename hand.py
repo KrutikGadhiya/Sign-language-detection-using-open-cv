@@ -12,7 +12,7 @@ while True:
     cv2.imshow('main', frame)
 
     if cv2.waitKey(1) & 0xFF == 27:
-        cv2.imwrite('N34.bmp', img_croped)
+        cv2.imwrite('S32.bmp', img_croped)
         break
 
 cv2.destroyAllWindows()

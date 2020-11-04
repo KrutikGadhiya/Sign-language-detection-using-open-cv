@@ -20,10 +20,13 @@ O_cascade = cv2.CascadeClassifier('harrcascade/O.xml')
 P_cascade = cv2.CascadeClassifier('harrcascade/P.xml')
 Q_cascade = cv2.CascadeClassifier('harrcascade/Q.xml')
 R_cascade = cv2.CascadeClassifier('harrcascade/R.xml')
+S_cascade = cv2.CascadeClassifier('harrcascade/S.xml')
 T_cascade = cv2.CascadeClassifier('harrcascade/T1.xml')
 U_cascade = cv2.CascadeClassifier('harrcascade/U1.xml')
+V_cascade = cv2.CascadeClassifier('harrcascade/Vkk.xml')
 W_cascade = cv2.CascadeClassifier('harrcascade/W.xml')
-Y_cascade = cv2.CascadeClassifier('harrcascade/Y2.xml')
+X_cascade = cv2.CascadeClassifier('harrcascade/Xkk.xml')
+Y_cascade = cv2.CascadeClassifier('harrcascade/Ykk.xml')
 nice_cascade = cv2.CascadeClassifier('harrcascade/nice.xml')
 bad_cascade = cv2.CascadeClassifier('harrcascade/bad.xml')
 
@@ -55,7 +58,7 @@ cap = cv2.VideoCapture(0)
 
 def show_frame():
     _, frame = cap.read()
-    cv2.rectangle(frame, (100, 100), (350, 350), (0, 255, 0), 3)
+    cv2.rectangle(frame, (100, 100), (350, 350), (0, 255, 0), 2)
     crop = frame[100:350, 100:350]
     crop_img = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
     black = cv2.imread("images/black.jpg")
@@ -77,12 +80,14 @@ def show_frame():
     P = P_cascade.detectMultiScale(crop_img, 1.3, 5)
     Q = Q_cascade.detectMultiScale(crop_img)
     R = R_cascade.detectMultiScale(crop_img, 1.3, 5)
-
-    W = W_cascade.detectMultiScale(crop_img, 1.2, 5)
-
-    Y = Y_cascade.detectMultiScale(crop_img, 1.3, 5)
+    S = S_cascade.detectMultiScale(crop_img, 1.1, 5)
     T = T_cascade.detectMultiScale(crop_img)
     U = U_cascade.detectMultiScale(crop_img)
+    V = V_cascade.detectMultiScale(crop_img, 1.3, 5)
+    W = W_cascade.detectMultiScale(crop_img, 1.2, 5)
+    X = X_cascade.detectMultiScale(crop_img, 1.3, 5)
+    Y = Y_cascade.detectMultiScale(crop_img, 1.3, 5)
+
 
     nice = nice_cascade.detectMultiScale(crop_img, 1.3, 5)
     bad = bad_cascade.detectMultiScale(crop_img, 1.3, 5)
@@ -138,18 +143,27 @@ def show_frame():
     for (hx, hy, hw, hh) in R:
         cv2.putText(black, 'R', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'R', (320, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
+    for (hx, hy, hw, hh) in S:
+        cv2.putText(black, 'S', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, 'S', (320, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in W:
         cv2.putText(black, 'W', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'W', (400, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in Y:
         cv2.putText(black, 'Y', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'Y', (400, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
+    for (hx, hy, hw, hh) in X:
+        cv2.putText(black, 'X', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, 'X', (400, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in T:
         cv2.putText(black, 'T', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'T', (400, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in U:
         cv2.putText(black, 'U', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'U', (400, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
+    for (hx, hy, hw, hh) in V:
+        cv2.putText(black, 'V', (140, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
+        cv2.putText(frame, 'V', (400, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
     for (hx, hy, hw, hh) in nice:
         cv2.putText(black, 'Nice', (70, 85), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(frame, 'Nice', (100, 400), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 255), 2, cv2.LINE_AA)
